@@ -1,0 +1,48 @@
+schema_version: 1
+
+name: "jboss-eap-7/eap-cd-maven"
+description: "The JBoss EAP continuous delivery (JBoss EAP CD) releases are intended to be Technology Preview - The JBoss EAP CD OpenShift container image is provided as technology preview. It is intended for development use only. It should NOT be deployed on production or in environments that are not intended for development use."
+version: "14.0"
+from: "jboss/base-rhel7:1.1"
+labels:
+    - name: "com.redhat.component"
+      value: "jboss-eap-7-eap-cd-container"
+    - name: "org.jboss.product"
+      value: "eap"
+    - name: "org.jboss.product.version"
+      value: "7.2.0"
+    - name: "org.jboss.product.eap.version"
+      value: "7.2.0"
+    - name: "com.redhat.deployments-dir"
+      value: "/opt/eap/standalone/deployments"
+    - name: "com.redhat.dev-mode"
+      value: "DEBUG:true"
+      description: "Environment variable used to enable development mode (debugging). A value of true will enable development mode."
+    - name: "com.redhat.dev-mode.port"
+      value: "DEBUG_PORT:8787"
+      description: "Environment variable used to specify the debug port. If not set, the default EAP debug port will be used (8787). Only applicable when development mode is enabled."
+envs:
+    - name: "JBOSS_HOME"
+      value: "/home/jboss"
+packages:
+      repositories:
+          - name: base
+            id: rhel-7-server-rpms
+      install:
+          - java-1.8.0-openjdk-devel
+modules:
+      repositories:
+          - path: modules
+      install:
+          - name: jboss.eap.cd.maven.repo.installer
+
+# note: these should be overridden in the corresponding -override.yaml files.
+# and built with concreate / cekit --overrides=dev-overrides.yaml etc
+artifacts:
+    - name: jboss-eap-cd-maven-repository.zip
+      path: jboss-eap-7.2.0.CD14.CR2-maven-repository.zip
+      sha256: a67ff569cc7b875e2e5ccd6de47d505187e4ee172cb33e57fef0e0d1ec96a4db
+run:
+      user: 185
+
+

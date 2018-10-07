@@ -1,0 +1,6 @@
+schema_version: 1
+
+name: jboss.eap.cd.maven.repo.installer
+execute:
+    - script: install_eap_maven_repo.sh
+

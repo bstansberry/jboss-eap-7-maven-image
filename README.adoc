@@ -1,0 +1,6 @@
+#JBoss Enterprise Application Platform continuous delivery maven repository image
+
+# License
+
+See link:LICENSE[LICENSE] file.
+

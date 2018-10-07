@@ -1,0 +1,87 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "jboss-cd-image-streams",
+        "annotations": {
+            "description": "ImageStream definition for JBoss Enterprise Application Platform continuous delivery maven repository.",
+            "openshift.io/provider-display-name": "Red Hat, Inc."
+        }
+    },
+    "items": [
+    {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "eap-cd-openshift",
+                "annotations": {
+                    "openshift.io/display-name": "JBoss EAP continuous delivery maven repository",
+                    "openshift.io/provider-display-name": "Red Hat, Inc.",
+                    "version": "14.0"
+                }
+            },
+            "labels": {
+                "xpaas": "14.0"
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "annotations": {
+                            "description": "The latest available build of JBoss EAP continuous delivery maven repository.",
+                            "iconClass": "icon-eap",
+                            "tags": "builder,eap,javaee,java,jboss,hidden",
+                            "supports": "eap:7.2,javaee:8,java:8",
+                            "version": "latest",
+                            "openshift.io/display-name": "JBoss EAP continuous delivery (Tech Preview) maven repository"
+                        },
+                        "referencePolicy": {
+                            "type": "Local"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "registry.redhat.io/jboss-eap-7/eap-cd-maven:latest"
+                        }
+                    },
+                    {
+                        "name": "14",
+                        "annotations": {
+                            "description": "JBoss EAP continuous delivery Tech Preview maven repository version 14.",
+                            "iconClass": "icon-eap",
+                            "tags": "builder,eap,javaee,java,jboss,hidden",
+                            "supports": "eap:7.2,javaee:8,java:8",
+                            "version": "14",
+                            "openshift.io/display-name": "JBoss EAP continuous delivery (Tech Preview) maven repository"
+                        },
+                        "referencePolicy": {
+                            "type": "Local"
+                        },
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "14.0"
+
+                        }
+                    },
+                    {
+                        "name": "14.0",
+                        "annotations": {
+                            "description": "JBoss EAP continuous delivery Tech Preview maven repository Image",
+                            "iconClass": "icon-eap",
+                            "tags": "builder,eap,javaee,java,jboss,hidden",
+                            "supports": "eap:7.2,javaee:8,java:8",
+                            "version": "14.0",
+                            "openshift.io/display-name": "JBoss EAP continuous delivery (Tech Preview) maven repository"
+                        },
+                        "referencePolicy": {
+                            "type": "Local"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "registry.redhat.io/jboss-eap-7/eap-cd-maven:14.0"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
